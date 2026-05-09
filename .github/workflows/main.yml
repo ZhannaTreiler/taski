@@ -34,8 +34,6 @@ jobs:
         cd backend/
         python manage.py test
 
-# .github/workflows/main.yml
-
 # Тут задачи тестирования и сборки образа
 # ...
 # Добавляем новую задачу: деплой приложения
@@ -73,7 +71,7 @@ jobs:
           # на сервере и в docker-compose.yml не указывать версию
           tags: treilerzh/taski_backend:latest 
 
-frontend_tests:
+  frontend_tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -116,8 +114,7 @@ frontend_tests:
           context: ./frontend/
           push: true
           tags: treilerzh/taski_frontend:latest
-
- build_gateway_and_push_to_docker_hub:
+  build_gateway_and_push_to_docker_hub:
     name: Push gateway Docker image to DockerHub
     runs-on: ubuntu-latest
     steps:
