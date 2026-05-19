@@ -19,9 +19,9 @@ services:
   frontend:
     env_file: .env
     build: ./frontend/
-    command: cp -r /app/build/. /staticfiles/
+    command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static_volume:/staticfiles
+      - static_volume:/frontend_static
   gateway:
     build: ./gateway/
     # А тут подключаем volume со статикой к gateway
