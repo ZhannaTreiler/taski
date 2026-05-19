@@ -2,7 +2,7 @@
 volumes:
   pg_data:
   # Новый volume — для статических файлов
-  static:
+  static_volume:
 
 services:
   db:
@@ -15,17 +15,17 @@ services:
     env_file: .env
     # Тут подключаем volume к backend
     volumes:
-      - static:/backend_static
+      - static_volume:/backend_static
   frontend:
     env_file: .env
     build: ./frontend/
     command: cp -r /app/build/. /staticfiles/
     volumes:
-      - static:/staticfiles
+      - static_volume:/staticfiles
   gateway:
     build: ./gateway/
     # А тут подключаем volume со статикой к gateway
     volumes:
-      - static:/staticfiles
+      - static_volume:/staticfiles
     ports:
       - 8000:80 
